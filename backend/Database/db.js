@@ -1,4 +1,4 @@
-import Sequelize from "sequelize";
+const Sequelize = require("sequelize");
 const db = {};
 
 /** The commented out section below is for local testing **/
@@ -22,4 +22,4 @@ const sequelize = new Sequelize("gateway", "pradyumna", "pradyumna", {
 db.sequelize = sequelize;
 // db.Sequelize = Sequelize;
 
-export default db;
+module.exports = db;
