@@ -1,6 +1,5 @@
-import { Router } from 'express'
-
-const Auth = Router()
+const express = require('express')
+const Auth = express.Router()
 
 const User = require('../Models/User')
 
@@ -44,3 +43,5 @@ Auth.post('/register', async(req, res) => {
     }
 
 })
+
+module.exports = Auth
