@@ -5,6 +5,7 @@ const app = express()
 
 app.use( bodyParser.urlencoded( {extended: false} ))
 app.use( bodyParser.json() )
+require('dotenv').config();
 
 let Auth = require("./Routes/Auth")
 app.use("/auth", Auth)

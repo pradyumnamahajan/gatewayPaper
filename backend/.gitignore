@@ -1,3 +1,5 @@
 /.pnp
 .pnp.js
 node_modules/
+
+.env
