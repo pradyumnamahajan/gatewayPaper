@@ -21,7 +21,14 @@ module.exports = db.sequelize.define(
         password: {
             type: Sequelize.STRING
         },
+        secret: {
+            type: Sequelize.STRING
+        },
         verified: {
+            type: Sequelize.BOOLEAN,
+            defaultValue: false,
+        },
+        secretSent: {
             type: Sequelize.BOOLEAN,
             defaultValue: false,
         },

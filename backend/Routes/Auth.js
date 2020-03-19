@@ -2,6 +2,7 @@ const express = require('express')
 const jwt = require('jsonwebtoken')
 const bcrypt = require('bcrypt')
 const nodemailer = require('nodemailer')
+const sha256 = require('../Security/sha256')
 const Auth = express.Router()
 
 const User = require('../Models/User')
@@ -56,7 +57,7 @@ Auth.post('/register', async (req, res) => {
                 html: `Please click this Link to confirm your email: <a href="${url}">${url}</a>`,
             })
 
-        
+
 
             res.send("Success: Registration successful, verification email sent.")
 
@@ -86,18 +87,28 @@ Auth.post('/login', async (req, res) => {
         if (bcrypt.compareSync(req.body.password, user.password)) {
 
             if (!user.verified) {
-                res.send("Verification incomplete")
+                return res.send("Verification incomplete")
             }
 
-            let token = jwt.sign({
-                name: user.name,
-                email: user.email,
-            }, process.env.JWT_SECRET)
+            if (!user.secretSent && user.verified) {
+                let seed = user.email + Date.now()
+                let secret = sha256.SHA256(seed)
+                await User.update({
+                    secret,
+                    secretSent: true
+                }, {
+                    where: {
+                        id: user.id,
+                    }
+                })
 
-            res.json({
-                "message": "Logged in",
-                "token": token
-            })
+                return res.json({
+                    secret,
+                    id: user.id,
+                })
+            }
+
+            res.send("User already signed in")
 
         } else {
             console.log('Wrong Password')
