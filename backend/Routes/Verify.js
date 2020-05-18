@@ -20,6 +20,7 @@ Verify.post("/", async (req, res) => {
       res.send({ status: "faliure" });
     }
   } catch (e) {
+    console.log(e)
     res.send({ status: "faliure" });
   }
 });
