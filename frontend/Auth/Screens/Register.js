@@ -37,7 +37,7 @@ export default class Register extends Component {
 
     this.setState({loading: true});
 
-    let {data} = await Axios.post('http://192.168.1.220:5000/auth/register', {
+    let {data} = await Axios.post('https://totp-gateway.herokuapp.com/auth/register', {
       email: this.state.email,
       password: this.state.password,
     });
@@ -50,6 +50,7 @@ export default class Register extends Component {
         {cancelable: false},
       );
     }
+    this.setState({loading: false})
 
     Alert.alert(
       data,

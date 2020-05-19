@@ -24,7 +24,7 @@ export default class Login extends Component {
   }
 
   handleSubmit = async () => {
-    let {data} = await Axios.post('http://192.168.1.220:5000/auth/login', {
+    let {data} = await Axios.post('https://totp-gateway.herokuapp.com/auth/login', {
       email: this.state.email,
       password: this.state.password,
     });
