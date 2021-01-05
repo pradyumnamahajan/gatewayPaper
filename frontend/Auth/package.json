@@ -15,7 +15,7 @@
     "@react-navigation/stack": "^5.2.3",
     "@tradle/react-native-http": "^2.0.1",
     "assert": "^1.5.0",
-    "axios": "^0.19.2",
+    "axios": "^0.21.1",
     "browserify-zlib": "^0.1.4",
     "console-browserify": "^1.2.0",
     "constants-browserify": "^1.0.0",
